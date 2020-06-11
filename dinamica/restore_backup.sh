@@ -13,7 +13,6 @@ docker exec dinamica_backup_1 sed -i s/"define( 'DB_HOST', '.*');"/"define( 'DB_
 docker exec dinamica_backup_1 cat /var/www/html/wp-config.php | grep DB_HOST
 
 # update wp-content/themes/twentyseventeen/functions.php
-
 docker exec dinamica_backup_1 cat /var/www/html/wp-content/themes/twentyseventeen/functions.php | grep update_option
 # //update_option( 'siteurl', 'http://54.165.165.218' );
 # //update_option( 'home', 'http://54.165.165.218' );
