@@ -12,6 +12,7 @@ docker exec dinamica_backup_1 cat /var/www/html/wp-config.php | grep DB_HOST
 docker exec dinamica_backup_1 sed -i s/"define( 'DB_HOST', '.*');"/"define( 'DB_HOST', 'mysql:3306');"/g /var/www/html/wp-config.php
 docker exec dinamica_backup_1 cat /var/www/html/wp-config.php | grep DB_HOST
 
+# https://wordpress.org/support/article/changing-the-site-url/#edit-functions-php
 # update wp-content/themes/twentyseventeen/functions.php
 docker exec dinamica_backup_1 cat /var/www/html/wp-content/themes/twentyseventeen/functions.php | grep update_option
 # //update_option( 'siteurl', 'http://54.165.165.218' );
