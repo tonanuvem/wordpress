@@ -1,3 +1,6 @@
+# https://github.com/angelo-v/wordpress-backup
+# docker exec <backup-container-name> backup
+docker exec backup backup
 # https://docs.docker.com/storage/volumes/#backup-restore-or-migrate-data-volumes
 docker run --rm --volumes-from backup -v $(pwd):/backup tonanuvem/wordpress-backup tar cvf /backup/backup.tar /backups
 sudo docker build -t wordpress-backup .
