@@ -1,3 +1,4 @@
 FROM aveltens/wordpress-backup
-COPY ./backup.tar .
-RUN tar -xf backup.tar -C /backups
+COPY ./backup.tar /backups
+WORKDIR /backups
+RUN tar -xf backup.tar
