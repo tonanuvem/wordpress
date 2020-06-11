@@ -1,0 +1,46 @@
+version: '3.3'
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    expose:
+     - 3306
+    environment:
+     - MYSQL_ROOT_PASSWORD
+     - MYSQL_DATABASE
+     - MYSQL_USER
+     - MYSQL_PASSWORD
+    volumes:
+     - mysql_data:/var/lib/mysql
+  wordpress:
+    image: wordpress
+    restart: always
+    depends_on:
+     - mysql
+    ports:
+     - "8000:80"
+    environment:
+     - "WORDPRESS_DB_NAME=$MYSQL_DATABASE"
+     - "WORDPRESS_DB_USER=$MYSQL_USER"
+     - "WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD"
+     - VIRTUAL_HOST
+     - LETSENCRYPT_HOST
+     - LETSENCRYPT_EMAIL
+    volumes:
+     - wordpress_files:/var/www/html
+  backup:
+    image: tonanuvem/wordpress-backup
+    restart: always
+    volumes:
+     - ./backups:/backups
+     - wordpress_files:/var/www/html
+    depends_on:
+     - mysql
+    environment:
+     - "MYSQL_ENV_MYSQL_DATABASE=$MYSQL_DATABASE"
+     - "MYSQL_ENV_MYSQL_USER=$MYSQL_USER"
+     - "MYSQL_ENV_MYSQL_PASSWORD=$MYSQL_PASSWORD"
+     - "MYSQL_PORT_3306_TCP_PORT=3306"
+volumes:
+  mysql_data:
+  wordpress_files:
