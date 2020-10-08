@@ -4,8 +4,9 @@
 printf "\n\n xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \n"
 printf "\n\n\tAplicando o Restore:\n\n"
 
-docker exec dinamica_backup_1 tar -xvf backup.tar --directory /backups/
-docker exec dinamica_backup_1 restore 20200425
+#docker exec dinamica_backup_1 tar -xvf backup.tar --directory /backups/
+#docker exec dinamica_backup_1 restore 20200425
+docker exec dinamica_backup_1 restore 20201008
 
 SERVER_IP=$(curl checkip.amazonaws.com)
 echo $SERVER_IP
