@@ -4,7 +4,9 @@
 printf "\n\n xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \n"
 printf "\n\n\tAplicando o Restore:\n\n"
 
-#docker exec dinamica_backup_1 tar -xvf backup.tar --directory /backups/
+docker exec dinamica_backup_1 cd /backups
+docker exec dinamica_backup_1 tar -xvf backup.tar --directory /backup/
+docker exec dinamica_backup_1 cd /backup
 #docker exec dinamica_backup_1 restore 20200425
 docker exec dinamica_backup_1 restore 20201008
 
@@ -36,9 +38,9 @@ docker exec dinamica_wordpress_1 cat /var/www/html/wp-content/themes/twentyseven
 #docker exec dinamica_wordpress_1 echo sed -i "'s|54.165.165.218|'$SERVER_IP'|'" /var/www/html/wp-content/themes/twentyseventeen/functions.php >> ./backups/update_option.sh
 #docker exec dinamica_wordpress_1 echo sed -i "'s|//update_option|update_option|'" /var/www/html/wp-content/themes/twentyseventeen/functions.php >> ~/update_option.sh
 #echo sed -i "'s|54.165.165.218|'$SERVER_IP'|'" /var/www/html/wp-content/themes/twentyseventeen/functions.php > ./backups/update_option.sh
-echo sed -i "'s|54.160.86.98|'$SERVER_IP'|'" /var/www/html/wp-content/themes/twentyseventeen/functions.php > ./backups/update_option.sh
+echo sed -i "'s|54.160.86.98|'$SERVER_IP'|'" /var/www/html/wp-content/themes/twentyseventeen/functions.php > ./backup/update_option.sh
 #echo sed -i "'s|//update_option|update_option|'" /var/www/html/wp-content/themes/twentyseventeen/functions.php >> ./backups/update_option.sh
-docker exec dinamica_wordpress_1 sh /backups/update_option.sh
+docker exec dinamica_wordpress_1 sh /backup/update_option.sh
 docker exec dinamica_wordpress_1 curl localhost/wp-admin/
 
 printf "\n\tConfig depois:\n"
