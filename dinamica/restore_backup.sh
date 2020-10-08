@@ -16,7 +16,7 @@ printf "\n\tConfig antes:\n"
 docker exec dinamica_wordpress_1 cat /var/www/html/wp-content/themes/twentyseventeen/functions.php | grep update_option
 
 # Ajustar update_option
-OLD_IP="54.160.86.98"
+OLD_IP="3.88.221.228"
 docker exec dinamica_wordpress_1 sed -i "s|$OLD_IP|$SERVER_IP|" /var/www/html/wp-content/themes/twentyseventeen/functions.php
 docker exec dinamica_wordpress_1 curl localhost/wp-admin/
 
