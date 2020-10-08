@@ -31,7 +31,8 @@ services:
      - ./backups:/backups
      - wordpress_files:/var/www/html
   backup:
-    image: tonanuvem/wordpress-backup
+    #image: tonanuvem/wordpress-backup
+    image: tonanuvem/wordpress-backup:20201008_0245
     restart: always
     volumes:
      - ./backups:/backups
