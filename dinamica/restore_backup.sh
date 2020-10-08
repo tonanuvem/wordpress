@@ -42,3 +42,4 @@ docker exec dinamica_wordpress_1 cat /var/www/html/wp-content/themes/twentyseven
 
 printf "\n\tAcessar: http://$SERVER_IP/wp-admin/"
 curl http://$SERVER_IP/wp-admin/
+printf "\n\n"
