@@ -43,7 +43,7 @@ printf "\n\tConfig depois:\n"
 docker exec dinamica_wordpress_1 cat /var/www/html/wp-content/themes/twentyseventeen/functions.php | grep update_option
 #update_option( 'siteurl', '$(curl checkip.amazonaws.com)' );
 #update_option( 'home', '$(curl checkip.amazonaws.com)' );
-
-printf "\n\tAcessar: http://$SERVER_IP/wp-admin/"
 curl http://$SERVER_IP/wp-admin/
+
+printf "\n\tAcessar: http://$SERVER_IP"
 printf "\n\n"
