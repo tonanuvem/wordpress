@@ -28,14 +28,14 @@ services:
      #- LETSENCRYPT_HOST
      #- LETSENCRYPT_EMAIL
     volumes:
-     - ./backup:/backup
+     #- ./backup:/backup
      - wordpress_files:/var/www/html
   backup:
     #image: tonanuvem/wordpress-backup
     image: tonanuvem/wordpress-backup:20201008_0245
     restart: always
     volumes:
-     - ./backup:/backup
+     - ./backups:/backups
      - wordpress_files:/var/www/html
     depends_on:
      - db
