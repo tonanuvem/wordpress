@@ -28,6 +28,7 @@ services:
      #- LETSENCRYPT_HOST
      #- LETSENCRYPT_EMAIL
     volumes:
+     - ./backups:/backups
      - wordpress_files:/var/www/html
   backup:
     image: tonanuvem/wordpress-backup
