@@ -32,7 +32,7 @@ services:
      - wordpress_files:/var/www/html
   backup:
     #image: tonanuvem/wordpress-backup
-    image: tonanuvem/wordpress-backup:20201008_0245
+    image: tonanuvem/wordpress-backup:20201008_1139
     restart: always
     volumes:
      #- ./backup:/backup
