@@ -32,8 +32,8 @@ docker exec dinamica_wordpress_1 cat /var/www/html/wp-content/themes/twentyseven
 
 # TO DO - siteurl e home já atualizados
 #docker exec dinamica_wordpress_1 echo sed -i "'s|54.165.165.218|'$SERVER_IP'|'"   /var/www/html/wp-content/themes/twentyseventeen/functions.php
-docker exec dinamica_wordpress_1 sed -i "'s|//update_option( 'siteurl', 'http://54.165.165.218' );|update_option( 'siteurl', 'http:/'$SERVER_IP'' );|'"   /var/www/html/wp-content/themes/twentyseventeen/functions.php
-#docker exec dinamica_wordpress_1 sed -i "'s|//update_option( 'home', 'http://54.165.165.218' );|'$SERVER_IP'|'"   /var/www/html/wp-content/themes/twentyseventeen/functions.php
+docker exec dinamica_wordpress_1 sed -i "'s|54.165.165.218|'$SERVER_IP'|'"   /var/www/html/wp-content/themes/twentyseventeen/functions.php
+docker exec dinamica_wordpress_1 sed -i "'s|//update_option|update_option|'"   /var/www/html/wp-content/themes/twentyseventeen/functions.php
 
 printf "\n\tConfig depois:\n"
 docker exec dinamica_wordpress_1 cat /var/www/html/wp-content/themes/twentyseventeen/functions.php | grep update_option
