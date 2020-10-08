@@ -15,10 +15,10 @@ printf "\n\n\tAjustando config do Banco de Dados:\n\n"
 
 # update wp-config.php
 printf "\n\tConfig antes:\n"
-docker exec dinamica_backup_1 cat /var/www/html/wp-config.php | grep DB_HOST
-docker exec dinamica_backup_1 sed -i s/"define( 'DB_HOST', '.*');"/"define( 'DB_HOST', 'mysql:3306');"/g /var/www/html/wp-config.php
+docker exec dinamica_wordpress_1 cat /var/www/html/wp-config.php | grep DB_HOST
+docker exec dinamica_wordpress_1 sed -i s/"define( 'DB_HOST', '.*');"/"define( 'DB_HOST', 'mysql:3306');"/g /var/www/html/wp-config.php
 printf "\n\tConfig depois:\n"
-docker exec dinamica_backup_1 cat /var/www/html/wp-config.php | grep DB_HOST
+docker exec dinamica_wordpress_1 cat /var/www/html/wp-config.php | grep DB_HOST
 
 printf "\n\n xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \n"
 printf "\n\n\tAjustando IP Externo do Site:\n\n"
@@ -26,20 +26,12 @@ printf "\n\n\tAjustando IP Externo do Site:\n\n"
 # https://wordpress.org/support/article/changing-the-site-url/#edit-functions-php
 # update wp-content/themes/twentyseventeen/functions.php
 printf "\n\tConfig antes:\n"
-docker exec dinamica_backup_1 cat /var/www/html/wp-content/themes/twentyseventeen/functions.php | grep update_option
-# //update_option( 'siteurl', 'http://54.165.165.218' );
-# //update_option( 'home', 'http://54.165.165.218' );
+docker exec dinamica_wordpress_1 cat /var/www/html/wp-content/themes/twentyseventeen/functions.php | grep update_option
+# update_option( 'siteurl', 'http://54.160.86.98' );
+# update_option( 'home', 'http://54.160.86.98' );
 
-# TO DO
-#docker exec dinamica_backup_1 sed -i 's|//update_option( 'siteurl',.*|update_option( 'siteurl', '$SERVER_IP' );|' /var/www/html/wp-content/themes/twentyseventeen/functions.php
-#docker exec dinamica_backup_1 sed -i s|"//update_option( 'siteurl', '.*' );"|"//update_option( 'siteurl', '$SERVER_IP' );"|g /var/www/html/wp-content/themes/twentyseventeen/functions.php
-#docker exec dinamica_backup_1 sed 's_//update_option( 'siteurl', 'http://54.165.165.218' );_//update_option( 'siteurl', '$SERVER_IP' );_' /var/www/html/wp-content/themes/twentyseventeen/functions.php
-docker exec dinamica_backup_1 sed "s|//update_option( 'siteurl'.*|update_option( 'siteurl', 'http://$SERVER_IP' );|g"  /var/www/html/wp-content/themes/twentyseventeen/functions.php
-#'s|Server=.*|Server='$SERVER_IP'|' 
-# echo "test ' this" | sed "s/'/\\\'/g" 
-# test \' this
-# echo "//update_option( 'siteurl', 'http://54.165.165.218' );" | sed "s|//update_option( 'siteurl'.*|update_option( 'siteurl', 'http://$SERVER_IP' );|g" 
-# update_option( 'siteurl', 'http://' );
+# TO DO - siteurl e home já atualizados
+docker exec dinamica_wordpress_1 echo sed -i "'s|54.160.86.98|'$SERVER_IP'|'"   /var/www/html/wp-content/themes/twentyseventeen/functions.php
 
 printf "\n\tConfig depois:\n"
 docker exec dinamica_backup_1 cat /var/www/html/wp-content/themes/twentyseventeen/functions.php | grep update_option
