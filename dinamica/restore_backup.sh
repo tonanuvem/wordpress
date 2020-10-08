@@ -30,10 +30,14 @@ docker exec dinamica_wordpress_1 cat /var/www/html/wp-content/themes/twentyseven
 # //update_option( 'siteurl', 'http://54.165.165.218' );
 # //update_option( 'home', 'http://54.165.165.218' );
 
-# TO DO - siteurl e home já atualizados
-#docker exec dinamica_wordpress_1 echo sed -i "'s|54.165.165.218|'$SERVER_IP'|'"   /var/www/html/wp-content/themes/twentyseventeen/functions.php
-docker exec dinamica_wordpress_1 echo sed -i "'s|54.165.165.218|'$SERVER_IP'|'"   /var/www/html/wp-content/themes/twentyseventeen/functions.php
-docker exec dinamica_wordpress_1 echo sed -i "'s|//update_option|update_option|'"   /var/www/html/wp-content/themes/twentyseventeen/functions.php
+# TO DO - usa o volume /backups compartilhado
+#docker exec dinamica_wordpress_1 echo sed -i "'s|54.165.165.218|'$SERVER_IP'|'" /var/www/html/wp-content/themes/twentyseventeen/functions.php
+#docker exec dinamica_wordpress_1 echo sed -i "'s|54.165.165.218|'$SERVER_IP'|'" /var/www/html/wp-content/themes/twentyseventeen/functions.php >> ./backups/update_option.sh
+#docker exec dinamica_wordpress_1 echo sed -i "'s|//update_option|update_option|'" /var/www/html/wp-content/themes/twentyseventeen/functions.php >> ~/update_option.sh
+echo sed -i "'s|54.165.165.218|'$SERVER_IP'|'" /var/www/html/wp-content/themes/twentyseventeen/functions.php >> ./backups/update_option.sh
+echo sed -i "'s|//update_option|update_option|'" /var/www/html/wp-content/themes/twentyseventeen/functions.php >> ./backups/update_option.sh
+docker exec dinamica_wordpress_1 sh /backups/update_option.sh
+docker exec dinamica_wordpress_1 curl localhost/wp-admin/
 
 printf "\n\tConfig depois:\n"
 docker exec dinamica_wordpress_1 cat /var/www/html/wp-content/themes/twentyseventeen/functions.php | grep update_option
