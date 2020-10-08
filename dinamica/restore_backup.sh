@@ -10,9 +10,8 @@ docker exec dinamica_backup_1 restore 20200425
 SERVER_IP=$(curl checkip.amazonaws.com)
 echo $SERVER_IP
 
-printf "\n\n xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \n"
-printf "\n\n\tAjustando config do Banco de Dados:\n\n"
-
+#printf "\n\n xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \n"
+#printf "\n\n\tAjustando config do Banco de Dados:\n\n"
 # update wp-config.php - dont need
 #printf "\n\tConfig antes:\n"
 #docker exec dinamica_wordpress_1 cat /var/www/html/wp-config.php | grep DB_HOST
