@@ -1,6 +1,6 @@
 version: '3.3'
 services:
-  mysql:
+  db:
     image: mysql:5.7
     restart: always
     expose:
@@ -16,17 +16,17 @@ services:
     image: wordpress
     restart: always
     depends_on:
-     - mysql
+     - db
     ports:
      - "8000:80"
     environment:
-     - "WORDPRESS_DB_HOST=mysql:3306"
+     - "WORDPRESS_DB_HOST=db:3306"
      - "WORDPRESS_DB_NAME=$MYSQL_DATABASE"
      - "WORDPRESS_DB_USER=$MYSQL_USER"
      - "WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD"
-     - VIRTUAL_HOST
-     - LETSENCRYPT_HOST
-     - LETSENCRYPT_EMAIL
+     #- VIRTUAL_HOST
+     #- LETSENCRYPT_HOST
+     #- LETSENCRYPT_EMAIL
     volumes:
      - wordpress_files:/var/www/html
   backup:
@@ -36,8 +36,9 @@ services:
      - ./backups:/backups
      - wordpress_files:/var/www/html
     depends_on:
-     - mysql
+     - db
     environment:
+     - "MYSQL_ENV_MYSQL_HOST=db"
      - "MYSQL_ENV_MYSQL_DATABASE=$MYSQL_DATABASE"
      - "MYSQL_ENV_MYSQL_USER=$MYSQL_USER"
      - "MYSQL_ENV_MYSQL_PASSWORD=$MYSQL_PASSWORD"
