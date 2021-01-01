@@ -1,4 +1,4 @@
-Exeuctando em cluster:
+Executando em cluster:
 
 > docker node ls
 
