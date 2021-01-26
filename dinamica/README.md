@@ -1,3 +1,9 @@
+Criar a máquina virtual para hospedar a solução:
+
+> cd config-ubuntu/vm-fiap
+
+> sh iniciar.sh
+
 Passo a passo:
 
 > git clone
