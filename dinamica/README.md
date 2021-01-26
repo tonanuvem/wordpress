@@ -4,6 +4,8 @@ Criar a máquina virtual para hospedar a solução:
 
 > sh iniciar.sh
 
+> sh conectar.sh
+
 Passo a passo:
 
 > git clone
