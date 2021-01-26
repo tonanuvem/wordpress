@@ -8,7 +8,7 @@ Criar a máquina virtual para hospedar a solução:
 
 Passo a passo:
 
-> git clone
+> git clone https://github.com/tonanuvem/wordpress.git
 
 > cd wordpress/dinamica
 
